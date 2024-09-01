@@ -19,6 +19,10 @@ describe('AC1: Após inserir dados válidos o usuário deve ser direcionado para
 
 describe('AC2: Após inserir um campo inválido deve exibir uma mensagem de erro', () => {
     
+    beforeEach(() => {
+        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+    });
+    
     it('Login com email inválido e senha válida', () => {
         //Passo a Passo
         cy.get('#username').type('rqwerqwrwqer@teste.com')
