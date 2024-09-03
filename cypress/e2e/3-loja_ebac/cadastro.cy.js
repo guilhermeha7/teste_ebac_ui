@@ -4,10 +4,10 @@ import { faker } from '@faker-js/faker';
 describe('Funcionalidade: Cadastro', () => {
     
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta')
     });
     
-    it('Deve completar o cadastro com sucesso e deve completar o primeiro e segundo nome com sucesso', () => {
+    it('Deve completar o cadastro com sucesso e Deve escrever o primeiro e segundo nome com sucesso', () => {
         //Variáveis
         var primeiro_nome = faker.person.firstName('female')
         var email = faker.internet.email(primeiro_nome)
