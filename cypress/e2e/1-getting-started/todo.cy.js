@@ -20,21 +20,21 @@ describe('example to-do app', () => {
     cy.visit('https://example.cypress.io/todo')
   })
 
-  it('displays two todo items by default', () => {
+  it('Deve exibir duas tarefas inicialmente', () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
-    cy.get('.todo-list li').should('have.length', 2)
+    cy.get('.view > label').should('have.length', 2)
 
     // We can go even further and check that the default todos each contain
     // the correct text. We use the `first` and `last` functions
     // to get just the first and last matched elements individually,
     // and then perform an assertion with `should`.
-    cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
-    cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
+    cy.get('.view > label').first().should('have.text', 'Pay electric bill')
+    cy.get('.view > label').last().should('have.text', 'Walk the dog')
   })
 
-  it('can add new todo items', () => {
+  it('Deve poder adicionar novas tarefas', () => {
     // We'll store our item text in a variable so we can reuse it
     const newItem = 'Feed the cat'
 
@@ -44,8 +44,10 @@ describe('example to-do app', () => {
     // This input has a data-test attribute so we'll use that to select the
     // element in accordance with best practices:
     // https://on.cypress.io/selecting-elements
+    /*Em JavaScript, as crases são usadas para criar uma "template literal", 
+    que permite juntar strings com variáveis e expressões.
+    Dentro de uma template literal, as expressões que você deseja adicionar na string são colocadas dentro de ${}*/
     cy.get('[data-test=new-todo]').type(`${newItem}{enter}`)
-
     // Now that we've typed our new item, let's check that it actually was added to the list.
     // Since it's the newest item, it should exist as the last element in the list.
     // In addition, with the two default items, we should have a total of 3 elements in the list.

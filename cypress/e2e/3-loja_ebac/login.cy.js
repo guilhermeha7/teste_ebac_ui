@@ -1,4 +1,3 @@
-
 /// <reference types="cypress"/>
 const perfil = require('../../fixtures/perfil.json')
 
@@ -10,8 +9,8 @@ describe('Funcionalidade: Login"', () => {
     
     it('Deve fazer o login com sucesso', () => {
         //Passo a Passo
-        cy.get('#username').type('gha@teste.com', {log : false})
-        cy.get('#password').type('teste123', {log : false})
+        cy.get('#username').type('gha@teste.com')
+        cy.get('#password').type('teste123')
         cy.get('.woocommerce-form > .button').click()
 
         //Resultado Esperado
@@ -45,6 +44,11 @@ describe('Funcionalidade: Login"', () => {
         cy.get('.woocommerce-form > .button').click()
             
         //Resultado Esperado
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, gha (não é gha? Sair)')   
+    });
+
+    it('Deve fazer login com sucesso - Usando comandos customizados', () => {
+        cy.login(perfil.usuario, perfil.senha)
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, gha (não é gha? Sair)')   
     });
     
