@@ -13,12 +13,17 @@ class ProdutosPage {
         cy.get('.product-block').eq(id).click()
     }
 
-    visitar_produto() {
+    visitar_produto(nome_produto) {
+        //cy.visit(`produtos/${nomeProduto}`)
+        const url_formatada = nome_produto.replace(/ /g, '-')
+        cy.visit(`produtos/${url_formatada}`)
+    }   
 
-    }
-
-    add_produto_carrinho() {
-
+    add_produto_carrinho(tamanho, cor, qtd) {
+        cy.get('.button-variable-item-'+tamanho).click()
+        cy.get('.button-variable-item-'+cor).click()
+        cy.get('.input-text').clear().type(qtd)
+        cy.get('.single_add_to_cart_button').click()
     }
 
 }
